@@ -1,115 +1,258 @@
-# 📧 AI Email & Calendar Assistant
+# 🚀 OpenEnv Hybrid AI Email & Calendar Assistant
 
-An intelligent email and calendar management system powered by GPT-4o-mini.
+An intelligent, real-world reinforcement learning environment where an AI agent autonomously manages emails — classifying, replying, scheduling meetings, and prioritizing tasks — with a robust hybrid architecture (LLM + fallback intelligence).
 
-## Features
+---
 
-- **📬 Gmail-style Inbox** — Priority badges, email preview, urgent highlighting
-- **🤖 AI Agent** — Analyzes emails and recommends actions (reply, schedule, archive, flag urgent)
-- **✉️ Draft Composer** — Auto-generates professional email replies
-- **📅 Calendar UI** — Visual 9AM–6PM scheduler with conflict detection
-- **📊 Performance Dashboard** — Score tracking and improvement visualization
+## 🌟 Overview
 
-## Project Structure
+This project simulates a **real-world productivity workflow** where an AI agent:
+
+* 📬 Reads incoming emails
+* 🧠 Understands intent using AI
+* ⚡ Takes actions (reply, schedule, archive, flag urgent)
+* 📅 Manages a dynamic calendar
+* 📊 Learns and improves via reward-based evaluation
+
+Built following the **OpenEnv standard**, this environment is designed for training and evaluating intelligent agents in practical scenarios.
+
+---
+
+## 🎯 Key Features
+
+### 🤖 Hybrid AI Agent
+
+* Uses **OpenAI GPT (gpt-4o-mini)** for intelligent reasoning
+* Falls back to **rule-based logic** if API fails
+* Ensures **100% reliability during demos**
+
+---
+
+### 📬 Gmail-Style UI (Streamlit)
+
+* Interactive inbox with email previews
+* Urgent email highlighting
+* One-click AI execution
+
+---
+
+### ✉️ Smart Email Actions
+
+Agent can:
+
+* Reply to emails
+* Schedule meetings
+* Flag urgent messages
+* Archive spam
+* Request more information
+
+---
+
+### 📅 Calendar Integration
+
+* Visual time slots (FREE / BUSY)
+* Auto scheduling of meetings
+* Conflict detection and handling
+
+---
+
+### 📊 Performance Dashboard
+
+* Task scores (Easy → Medium → Hard)
+* Reward tracking
+* Improvement visualization (V1 → V2)
+
+---
+
+### 🧠 OpenEnv Compliance
+
+* `step()`, `reset()`, `state()` API structure
+* Typed observation/action models
+* Multi-task evaluation with graders
+
+---
+
+## 🏗️ Project Structure
 
 ```
-├── agent/
-│   ├── baseline.py      # GPT-4o-mini agent with few-shot prompting
-│   └── inference.py     # Evaluation script across easy/medium/hard tasks
-├── app.py               # Streamlit UI
-├── Dockerfile           # Hugging Face Spaces deployment
+openenv-hybrid-email-assistant/
+│
+├── app.py                  # Streamlit UI
 ├── requirements.txt
-└── README.md
+├── Dockerfile
+├── README.md
+│
+├── agent/
+│   ├── baseline.py         # Hybrid AI agent
+│   ├── inference.py        # Evaluation script
+│   └── __init__.py
+│
+├── .env                    # API key (not pushed)
 ```
 
-## Local Setup
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
 
 ```bash
-# 1. Clone the repo
-git clone <your-repo-url>
-cd ai-email-assistant
+git clone https://github.com/your-username/openenv-hybrid-email-assistant.git
+cd openenv-hybrid-email-assistant
+```
 
-# 2. Install dependencies
+---
+
+### 2️⃣ Create Virtual Environment
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+---
+
+### 3️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-# 3. Set your OpenAI API key
-export OPENAI_API_KEY=sk-...
+---
 
-# 4. Run the app
+### 4️⃣ Add API Key (Optional but Recommended)
+
+Create a `.env` file:
+
+```
+OPENAI_API_KEY=your_api_key_here
+```
+
+> ⚠️ If no API key is provided, the system will automatically switch to fallback mode.
+
+---
+
+## ▶️ Running the Application
+
+### Run UI
+
+```bash
 streamlit run app.py
+```
 
-# 5. (Optional) Run inference evaluation
+Open in browser:
+
+```
+http://localhost:8501
+```
+
+---
+
+### Run Evaluation
+
+```bash
 python agent/inference.py
 ```
 
-## 🚀 Hugging Face Spaces Deployment
+---
 
-### Step 1: Create a Hugging Face Space
+## 🧪 Tasks & Evaluation
 
-1. Go to [huggingface.co/spaces](https://huggingface.co/spaces)
-2. Click **"Create new Space"**
-3. Fill in:
-   - **Space name**: `ai-email-assistant` (or your choice)
-   - **License**: MIT
-   - **SDK**: Select **Docker**
-4. Click **"Create Space"**
+The agent is evaluated across **3 difficulty levels**:
 
-### Step 2: Upload Files
+| Difficulty | Description                    |
+| ---------- | ------------------------------ |
+| Easy       | Clear intent emails            |
+| Medium     | Ambiguous or multi-step emails |
+| Hard       | Complex reasoning & scheduling |
 
-Upload all project files to your Space repository:
+---
 
-```bash
-# Clone your new Space
-git clone https://huggingface.co/spaces/<your-username>/ai-email-assistant
-cd ai-email-assistant
+## 📈 Results
 
-# Copy project files
-cp -r /path/to/project/* .
+| Version       | Score     |
+| ------------- | --------- |
+| V1 (Baseline) | 0.871     |
+| V2 (Improved) | **0.980** |
 
-# Push
-git add .
-git commit -m "Initial deployment"
-git push
+✅ Significant improvement through:
+
+* Better prompt engineering
+* Hybrid fallback logic
+* Robust error handling
+
+---
+
+## 🧠 How It Works
+
+1. Email is received
+2. Agent analyzes content
+3. Chooses best action
+4. Generates response
+5. Updates calendar (if needed)
+6. Receives reward based on correctness
+
+---
+
+## ☁️ Deployment (Hugging Face Spaces)
+
+### Steps:
+
+1. Create a new Space
+2. Select **Docker**
+3. Upload project files
+4. Add secret:
+
+```
+OPENAI_API_KEY=your_key
 ```
 
-Or use the **Files** tab in the Space UI to upload directly.
+---
 
-### Step 3: Add API Secret
+## 🐳 Docker Support
 
-1. Go to your Space → **Settings** tab
-2. Scroll to **Repository secrets**
-3. Click **"New secret"**
-4. Name: `OPENAI_API_KEY`
-5. Value: your OpenAI API key (starts with `sk-`)
-6. Click **"Add secret"**
+Build and run:
 
-### Step 4: Deploy
+```bash
+docker build -t email-agent .
+docker run -p 7860:7860 email-agent
+```
 
-The Space will automatically build and deploy using the Dockerfile. Watch the **Build logs** tab for progress. Once the build completes, your app is live!
+---
 
-## Agent Actions
+## 🚨 Error Handling
 
-| Action | Trigger | Reward |
-|---|---|---|
-| `flag_urgent` | High-priority / deadline emails | 1.0 |
-| `schedule_meeting` | Meeting requests | 1.0 |
-| `reply` | General inquiries | 0.8 |
-| `archive` | Spam / promotional | 1.0 |
-| `request_info` | Ambiguous emails | 0.6 |
+* API failures → fallback agent
+* Rate limits → retry + fallback
+* Missing API key → offline mode
 
-## Performance Results
+---
 
-| Version | Score | Notes |
-|---|---|---|
-| V1 Baseline | 0.871 | Zero-shot prompting |
-| V2 Improved | 0.980 | Few-shot + CoT reasoning |
+## 💡 Future Improvements
 
-## Environment Variables
+* Email threading support
+* Voice assistant integration
+* Multi-user simulation
+* Advanced RL training loop
 
-| Variable | Required | Description |
-|---|---|---|
-| `OPENAI_API_KEY` | ✅ Yes | Your OpenAI API key |
+---
 
-## License
+## 🏆 Why This Project Stands Out
 
-MIT
+* Real-world problem simulation
+* Hybrid AI (robust + reliable)
+* Full-stack system (Agent + UI + Deployment)
+* OpenEnv compliance
+* Strong evaluation metrics
+
+---
+
+## 👨‍💻 Author
+
+Developed as part of an AI/ML hackathon project.
+
+---
+
+## 📜 License
+
+MIT License
